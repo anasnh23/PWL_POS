@@ -34,14 +34,13 @@ use Illuminate\Support\Facades\Route;
 //Jobsheet 5
 Route::get('/', [WelcomeController::class, 'index']);
 
-route::group(['prefix'=>'user'], function() {
-    route::get('/', [UserController::class, 'index']); //Menampilkan halaman awal user
-    route::post('/list', [UserController::class, 'list']); //Menampilkan data user dalam bentuk json untuk datatables
-    route::get('/create', [UserController::class, 'create']); //Menampilkan halaman form tambah user
-    route::post('/', [UserController::class, 'store']); //Menampilkan data user baru
-    route::get('/{id}', [UserController::class, 'show']); //Menampilkan detail user
-    route::get('/{id}/edit', [UserController::class, 'edit']); //Menampilkan halaman form user
-    route::put('/{id}', [UserController::class, 'update']); //Menampilkan perubahan data user
-    route::delete('/{id}', [UserController::class, 'hapus']); //Menghapus data user
-
+Route::group(['prefix' => 'user'], function() {
+    Route::get('/', [UserController::class, 'index']); // Menampilkan halaman awal user
+    Route::post('/list', [UserController::class, 'list']); // Menampilkan data user dalam bentuk json untuk datatables
+    Route::get('/create', [UserController::class, 'create']); // Menampilkan halaman form tambah user
+    Route::post('/', [UserController::class, 'store']); // Menyimpan data user baru
+    Route::get('/{id}', [UserController::class, 'show']); // Menampilkan detail user
+    Route::get('/{id}/edit', [UserController::class, 'edit']); // Menampilkan halaman form user
+    Route::put('/{id}', [UserController::class, 'update']); // Menyimpan perubahan data user
+    Route::delete('/{id}', [UserController::class, 'destroy']); // Menghapus data user
 });
