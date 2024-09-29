@@ -10,9 +10,9 @@ class BarangModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'm_barang';        // mendefinisikan nama tabel yang digunakan oleh model ini
+    protected $table = 'm_barangs'; // Perbaiki nama tabel di sini
     public $timestamps = false;
-    protected $primaryKey = 'barang_id';  // mendefinisikan primary key dari tabel yang digunakan
+    protected $primaryKey = 'barang_id';
 
     protected $fillable = [
         'barang_id',
@@ -27,5 +27,4 @@ class BarangModel extends Model
     {
         return $this->belongsTo(KategoriModel::class, 'kategori_id', 'kategori_id');
     }
-    
 }
