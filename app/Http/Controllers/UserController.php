@@ -6,7 +6,6 @@ use App\Models\LevelModel;
 use App\Models\UserModel;   // mengimpor model UserModel
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;    // mengimpor kelas Hash
-use Yajra\DataTables\Facades\DataTable; // mengimpor kelas DataTable
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Database\QueryException; 
 
