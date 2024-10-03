@@ -9,20 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class BarangModel extends Model
 {
     use HasFactory;
-
-    protected $table = 'm_barangs'; // Perbaiki nama tabel di sini
-    public $timestamps = false;
+    protected $table = 'm_barangs';
     protected $primaryKey = 'barang_id';
-
-    protected $fillable = [
-        'barang_id',
-        'kategori_id',
-        'barang_kode',
-        'barang_nama',
-        'harga_beli',
-        'harga_jual'
-    ];
-
+    protected $fillable = ['kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual'];
     public function kategori(): BelongsTo
     {
         return $this->belongsTo(KategoriModel::class, 'kategori_id', 'kategori_id');
