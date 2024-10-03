@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LevelModel;
 use App\Models\UserModel;   // mengimpor model UserModel
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;    // mengimpor kelas Hash
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Database\QueryException; 
@@ -423,6 +424,45 @@ class UserController extends Controller {
             // Memberitahu DataTables bahwa kolom aksi adalah HTML
             ->rawColumns(['aksi'])
             ->make(true);
+    }
+
+    //Jobsheet 6 pratikum1
+    public function create_ajax()
+    {
+        $level = LevelModel::select('level_id', 'level_nama')->get();
+
+        return view('user.create_ajax')
+                    ->with('level', $level);
+    }
+
+    //Menyimpan data user baru AJAX
+    public function store_ajax(Request $request){
+        //periksa bila request berupa AJAX atau tidak
+        if($request->ajax() || $request->wantsJson()){
+            $rules = [
+                'level_id'  => 'required|integer',
+                'username'  => 'required|string|min:3|unique:m_user,username',
+                'nama'      => 'required|string|max:100',
+                'password'  => 'required|min:6'
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if($validator->fails()){
+                return response()->json([
+                    'status'    =>false,    //response status, false: eror/gagal, true:berhasil
+                    'message'   => 'Validasi Gagal',
+                    'msgField'  => $validator->errors(),    //pesan eror validasi
+                ]);
+            }
+
+            UserModel::create($request->all());
+            return response()->json([
+                'status'    => true,
+                'message'   => 'Data user berhasil disimpan'
+            ]);
+        }
+        redirect('/');
     }
 
 

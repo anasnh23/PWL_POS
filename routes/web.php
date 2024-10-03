@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\BarangController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\StokController;
+use App\Models\KategoriModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +42,8 @@ Route::group(['prefix' => 'user'], function() {
     Route::post('/list', [UserController::class, 'list']); // Menampilkan data user dalam bentuk json untuk datatables
     Route::get('/create', [UserController::class, 'create']); // Menampilkan halaman form tambah user
     Route::post('/', [UserController::class, 'store']); // Menyimpan data user baru
+    Route::get('/create_ajax', [UserController::class, 'create_ajax']);  //menampilkan laman form tambah user AJAX
+    Route::post('/ajax', [UserController::class, 'store_ajax']); //menyimpan data user baru AJAX
     Route::get('/{id}', [UserController::class, 'show']); // Menampilkan detail user
     Route::get('/{id}/edit', [UserController::class, 'edit']); // Menampilkan halaman form user
     Route::put('/{id}', [UserController::class, 'update']); // Menyimpan perubahan data user
@@ -93,13 +95,13 @@ Route::group(['prefix' => 'supplier/'], function() {
     Route::delete('/{id}', [SupplierController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'stok/'], function() {
-    Route::get('/', [StokController::class, 'index']);
-    Route::post('/list', [StokController::class, 'list']);
-    Route::get('/create', [StokController::class, 'create']);
-    Route::post('/', [StokController::class, 'store']);
-    Route::get('/{id}', [StokController::class, 'show']);
-    Route::get('/{id}/edit', [StokController::class, 'edit']);
-    Route::put('/{id}', [StokController::class, 'update']);
-    Route::delete('/{id}', [StokController::class, 'destroy']);
-});
+// Route::group(['prefix' => 'stok/'], function() {
+//     Route::get('/', [StokController::class, 'index']);
+//     Route::post('/list', [StokController::class, 'list']);
+//     Route::get('/create', [StokController::class, 'create']);
+//     Route::post('/', [StokController::class, 'store']);
+//     Route::get('/{id}', [StokController::class, 'show']);
+//     Route::get('/{id}/edit', [StokController::class, 'edit']);
+//     Route::put('/{id}', [StokController::class, 'update']);
+//     Route::delete('/{id}', [StokController::class, 'destroy']);
+// });
