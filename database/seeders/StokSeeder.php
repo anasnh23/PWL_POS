@@ -98,48 +98,7 @@ class StokSeeder extends Seeder
                 'stok_jumlah' => 60,
                 'user_id' => 1,
             ],
-            [
-                'stok_id' => 11,
-                'barang_id' => 11,
-                'supplier_id' => 1,
-                'stok_tanggal' => '2024-09-11 07:00:00',
-                'stok_jumlah' => 55,
-                'user_id' => 1,
-            ],
-            [
-                'stok_id' => 12,
-                'barang_id' => 12,
-                'supplier_id' => 2,
-                'stok_tanggal' => '2024-09-11 07:00:00',
-                'stok_jumlah' => 70,
-                'user_id' => 2,
-            ],
-
-            // Produk Kesehatan (kategori_id: 5)
-            [
-                'stok_id' => 13,
-                'barang_id' => 13,
-                'supplier_id' => 3,
-                'stok_tanggal' => '2024-09-11 07:00:00',
-                'stok_jumlah' => 80,
-                'user_id' => 3,
-            ],
-            [
-                'stok_id' => 14,
-                'barang_id' => 14,
-                'supplier_id' => 3,
-                'stok_tanggal' => '2024-09-11 07:00:00',
-                'stok_jumlah' => 45,
-                'user_id' => 3,
-            ],
-            [
-                'stok_id' => 15,
-                'barang_id' => 15,
-                'supplier_id' => 1,
-                'stok_tanggal' => '2024-09-11 07:00:00',
-                'stok_jumlah' => 50,
-                'user_id' => 1,
-            ],
+            
         ];
         
         DB::table('t_stok')->insert($data);           

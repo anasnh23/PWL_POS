@@ -14,138 +14,99 @@ class BarangSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            // Elektronik Rumah (kategori_id: 1)
+            // Kategori 1: Sembako (SBK)
             [
                 'barang_id' => 1,
                 'kategori_id' => 1,
-                'barang_kode' => 'BK001',
-                'barang_nama' => 'TV LED 40 Inch',
-                'harga_beli' => 3000000,
-                'harga_jual' => 3500000,
+                'barang_kode' => 'SBK-001',
+                'barang_nama' => 'Beras Cap Jago (5kg)',
+                'harga_beli' => 65000,
+                'harga_jual' => 68000,
             ],
             [
                 'barang_id' => 2,
                 'kategori_id' => 1,
-                'barang_kode' => 'BK002',
-                'barang_nama' => 'Mesin Cuci Front Load',
-                'harga_beli' => 4500000,
-                'harga_jual' => 5000000,
-            ],
-            [
-                'barang_id' => 3,
-                'kategori_id' => 1,
-                'barang_kode' => 'BK003',
-                'barang_nama' => 'Kulkas Dua Pintu',
-                'harga_beli' => 5500000,
-                'harga_jual' => 6000000,
+                'barang_kode' => 'SBK-002',
+                'barang_nama' => 'Beras Bramo Cap Lele',
+                'harga_beli' => 80000,
+                'harga_jual' => 83000,
             ],
 
-            // Peralatan Kantor (kategori_id: 2)
+            // Kategori 2: Makanan ringan (SNK)
+            [
+                'barang_id' => 3,
+                'kategori_id' => 2,
+                'barang_kode' => 'SNK-001',
+                'barang_nama' => 'Happy Toss',
+                'harga_beli' => 10500,
+                'harga_jual' => 11000,
+            ],
             [
                 'barang_id' => 4,
                 'kategori_id' => 2,
-                'barang_kode' => 'BK004',
-                'barang_nama' => 'Printer LaserJet',
-                'harga_beli' => 2000000,
-                'harga_jual' => 2500000,
+                'barang_kode' => 'SNK-002',
+                'barang_nama' => 'Oreo',
+                'harga_beli' => 7200,
+                'harga_jual' => 7800,
             ],
+
+            // Kategori 3: Peralatan Mandi (MND)
             [
                 'barang_id' => 5,
-                'kategori_id' => 2,
-                'barang_kode' => 'BK005',
-                'barang_nama' => 'Mesin Fotokopi Digital',
-                'harga_beli' => 10000000,
-                'harga_jual' => 12000000,
+                'kategori_id' => 3,
+                'barang_kode' => 'MND-001',
+                'barang_nama' => 'Sabun Lifebuoy',
+                'harga_beli' => 4250,
+                'harga_jual' => 5000,
             ],
             [
                 'barang_id' => 6,
-                'kategori_id' => 2,
-                'barang_kode' => 'BK006',
-                'barang_nama' => 'Kursi Ergonomis Kantor',
-                'harga_beli' => 750000,
-                'harga_jual' => 900000,
+                'kategori_id' => 3,
+                'barang_kode' => 'MND-002',
+                'barang_nama' => 'Pasta Gigi Pepsoden',
+                'harga_beli' => 6750,
+                'harga_jual' => 7500,
             ],
 
-            // Mainan Anak (kategori_id: 3)
+            // Kategori 4: Keperluan Bayi (BAY)
             [
                 'barang_id' => 7,
-                'kategori_id' => 3,
-                'barang_kode' => 'BK007',
-                'barang_nama' => 'Mobil Remote Control',
-                'harga_beli' => 500000,
-                'harga_jual' => 600000,
+                'kategori_id' => 4,
+                'barang_kode' => 'BAY-001',
+                'barang_nama' => 'Susu SGM Coklat 900gr',
+                'harga_beli' => 92500,
+                'harga_jual' => 95000,
             ],
             [
                 'barang_id' => 8,
-                'kategori_id' => 3,
-                'barang_kode' => 'BK008',
-                'barang_nama' => 'Lego Classic Set',
-                'harga_beli' => 300000,
-                'harga_jual' => 350000,
+                'kategori_id' => 4,
+                'barang_kode' => 'BAY-002',
+                'barang_nama' => 'Popok Mamy Poko',
+                'harga_beli' => 56000,
+                'harga_jual' => 58000,
             ],
+
+            // Kategori 5: Minuman (MNM)
             [
                 'barang_id' => 9,
-                'kategori_id' => 3,
-                'barang_kode' => 'BK009',
-                'barang_nama' => 'Boneka Barbie',
-                'harga_beli' => 250000,
-                'harga_jual' => 300000,
+                'kategori_id' => 5,
+                'barang_kode' => 'MNM-001',
+                'barang_nama' => 'Aqua 600ml',
+                'harga_beli' => 3700,
+                'harga_jual' => 4500,
             ],
-
-            // Fashion Wanita (kategori_id: 4)
             [
                 'barang_id' => 10,
-                'kategori_id' => 4,
-                'barang_kode' => 'BK010',
-                'barang_nama' => 'Blouse Sutra Wanita',
-                'harga_beli' => 400000,
-                'harga_jual' => 500000,
-            ],
-            [
-                'barang_id' => 11,
-                'kategori_id' => 4,
-                'barang_kode' => 'BK011',
-                'barang_nama' => 'Tas Kulit Branded',
-                'harga_beli' => 1500000,
-                'harga_jual' => 1800000,
-            ],
-            [
-                'barang_id' => 12,
-                'kategori_id' => 4,
-                'barang_kode' => 'BK012',
-                'barang_nama' => 'Sepatu High Heels',
-                'harga_beli' => 600000,
-                'harga_jual' => 750000,
-            ],
+                'kategori_id' => 5,
+                'barang_kode' => 'MNM-002',
+                'barang_nama' => 'Le Mineral',
+                'harga_beli' => 3500,
+                'harga_jual' => 4000,
 
-            // Produk Kesehatan (kategori_id: 5)
-            [
-                'barang_id' => 13,
-                'kategori_id' => 5,
-                'barang_kode' => 'BK013',
-                'barang_nama' => 'Suplemen Vitamin C',
-                'harga_beli' => 100000,
-                'harga_jual' => 150000,
-            ],
-            [
-                'barang_id' => 14,
-                'kategori_id' => 5,
-                'barang_kode' => 'BK014',
-                'barang_nama' => 'Termometer Digital',
-                'harga_beli' => 80000,
-                'harga_jual' => 120000,
-            ],
-            [
-                'barang_id' => 15,
-                'kategori_id' => 5,
-                'barang_kode' => 'BK015',
-                'barang_nama' => 'Alat Tes Gula Darah',
-                'harga_beli' => 300000,
-                'harga_jual' => 350000,
             ],
         ];
 
-        DB::table('m_barangs')->insert($data);        
-        //
+        DB::table('m_barang')->insert($data);
+    
     }
 }
