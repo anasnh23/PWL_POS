@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 25, 2024 at 06:38 AM
+-- Generation Time: Oct 14, 2024 at 02:48 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -71,15 +71,20 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2024_09_11_065706_create_m_kategori_table', 10),
 (19, '2024_09_11_071620_create_m_supplier_table', 11),
 (20, '2024_09_11_074330_create_t_stok_table', 12),
-(21, '2024_09_12_095035_create_m_user_table', 13);
+(21, '2024_09_12_095035_create_m_user_table', 13),
+(22, '2024_09_11_042854_create_m_kategori_table', 14),
+(23, '2024_09_09_041834_m_kategori_table', 15),
+(24, '2024_09_09_041851_m_supplier_table', 15),
+(25, '2024_09_09_044054_m_barang_table', 15),
+(26, '2024_09_09_051849_t_stok_table', 15);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_barangs`
+-- Table structure for table `m_barang`
 --
 
-CREATE TABLE `m_barangs` (
+CREATE TABLE `m_barang` (
   `barang_id` bigint UNSIGNED NOT NULL,
   `kategori_id` bigint UNSIGNED NOT NULL,
   `barang_kode` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -91,33 +96,28 @@ CREATE TABLE `m_barangs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `m_barangs`
+-- Dumping data for table `m_barang`
 --
 
-INSERT INTO `m_barangs` (`barang_id`, `kategori_id`, `barang_kode`, `barang_nama`, `harga_beli`, `harga_jual`, `created_at`, `updated_at`) VALUES
-(1, 1, 'BK001', 'TV LED 40 Inch', 3000000, 3500000, NULL, NULL),
-(2, 1, 'BK002', 'Mesin Cuci Front Load', 4500000, 5000000, NULL, NULL),
-(3, 1, 'BK003', 'Kulkas Dua Pintu', 5500000, 6000000, NULL, NULL),
-(4, 2, 'BK004', 'Printer LaserJet', 2000000, 2500000, NULL, NULL),
-(5, 2, 'BK005', 'Mesin Fotokopi Digital', 10000000, 12000000, NULL, NULL),
-(6, 2, 'BK006', 'Kursi Ergonomis Kantor', 750000, 900000, NULL, NULL),
-(7, 3, 'BK007', 'Mobil Remote Control', 500000, 600000, NULL, NULL),
-(8, 3, 'BK008', 'Lego Classic Set', 300000, 350000, NULL, NULL),
-(9, 3, 'BK009', 'Boneka Barbie', 250000, 300000, NULL, NULL),
-(10, 4, 'BK010', 'Blouse Sutra Wanita', 400000, 500000, NULL, NULL),
-(11, 4, 'BK011', 'Tas Kulit Branded', 1500000, 1800000, NULL, NULL),
-(12, 4, 'BK012', 'Sepatu High Heels', 600000, 750000, NULL, NULL),
-(13, 5, 'BK013', 'Suplemen Vitamin C', 100000, 150000, NULL, NULL),
-(14, 5, 'BK014', 'Termometer Digital', 80000, 120000, NULL, NULL),
-(15, 5, 'BK015', 'Alat Tes Gula Darah', 300000, 350000, NULL, NULL);
+INSERT INTO `m_barang` (`barang_id`, `kategori_id`, `barang_kode`, `barang_nama`, `harga_beli`, `harga_jual`, `created_at`, `updated_at`) VALUES
+(1, 1, 'SBK-001', 'Beras Cap Jago (5kg)', 65000, 68000, NULL, NULL),
+(2, 1, 'SBK-002', 'Beras Bramo Cap Lele', 80000, 83000, NULL, NULL),
+(3, 2, 'SNK-001', 'Happy Toss', 10500, 11000, NULL, NULL),
+(4, 2, 'SNK-002', 'Oreo', 7200, 7800, NULL, NULL),
+(5, 3, 'MND-001', 'Sabun Lifebuoy', 4250, 5000, NULL, NULL),
+(6, 3, 'MND-002', 'Pasta Gigi Pepsoden', 6750, 7500, NULL, NULL),
+(7, 4, 'BAY-001', 'Susu SGM Coklat 900gr', 92500, 95000, NULL, NULL),
+(8, 4, 'BAY-002', 'Popok Mamy Poko', 56000, 58000, NULL, NULL),
+(9, 5, 'MNM-001', 'Aqua 600ml', 3700, 4500, NULL, NULL),
+(10, 5, 'MNM-002', 'Le Mineral', 3500, 4000, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `m_kategoris`
+-- Table structure for table `m_kategori`
 --
 
-CREATE TABLE `m_kategoris` (
+CREATE TABLE `m_kategori` (
   `kategori_id` bigint UNSIGNED NOT NULL,
   `kategori_kode` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kategori_nama` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -126,15 +126,15 @@ CREATE TABLE `m_kategoris` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `m_kategoris`
+-- Dumping data for table `m_kategori`
 --
 
-INSERT INTO `m_kategoris` (`kategori_id`, `kategori_kode`, `kategori_nama`, `created_at`, `updated_at`) VALUES
-(1, 'KT001', 'Elektronik Rumah', NULL, NULL),
-(2, 'KT002', 'Peralatan Melukis', NULL, NULL),
-(3, 'KT003', 'Mainan Anak', NULL, NULL),
-(4, 'KT004', 'Fashion Wanita', NULL, NULL),
-(5, 'KT005', 'Produk Kecantikan', NULL, NULL);
+INSERT INTO `m_kategori` (`kategori_id`, `kategori_kode`, `kategori_nama`, `created_at`, `updated_at`) VALUES
+(1, 'SBK', 'Sembako', NULL, NULL),
+(2, 'SNK', 'Makanan ringan', NULL, NULL),
+(3, 'MND', 'Peralatan Mandi', NULL, NULL),
+(4, 'BAY', 'Keperluan Bayi', NULL, NULL),
+(5, 'MNM', 'Minuman', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,8 +157,9 @@ CREATE TABLE `m_level` (
 INSERT INTO `m_level` (`level_id`, `level_kode`, `level_nama`, `created_at`, `updated_at`) VALUES
 (1, 'ADM', 'Administrator', NULL, NULL),
 (2, 'MNG', 'Manager', NULL, NULL),
-(3, 'STF', 'Satff/Kasir', NULL, NULL),
-(4, 'kode_lv4', 'Nama Level 4', '2024-09-12 10:08:02', '2024-09-12 10:08:02');
+(3, 'STF', 'Staff', NULL, '2024-10-07 18:21:58'),
+(4, 'KSR', 'kasir', '2024-09-12 10:08:02', '2024-10-07 18:20:47'),
+(9, 'BRH', 'buruh', '2024-09-29 06:50:48', '2024-09-29 06:50:48');
 
 -- --------------------------------------------------------
 
@@ -180,11 +181,11 @@ CREATE TABLE `m_supplier` (
 --
 
 INSERT INTO `m_supplier` (`supplier_id`, `supplier_kode`, `supplier_nama`, `supplier_alamat`, `created_at`, `updated_at`) VALUES
-(1, 'SP001', 'PT Elektronik Rumah Sejahtera', 'Jakarta, Indonesia', NULL, NULL),
-(2, 'SP002', 'CV Peralatan Kantor Maju', 'Bandung, Indonesia', NULL, NULL),
-(3, 'SP003', 'PT Mainan Anak Ceria', 'Surabaya, Indonesia', NULL, NULL),
-(4, 'SP004', 'PT Fashion Wanita Modern', 'Semarang, Indonesia', NULL, NULL),
-(5, 'SP005', 'CV Produk Kesehatan Prima', 'Medan, Indonesia', NULL, NULL);
+(1, 'SP001', 'CV Berkah Sembako', 'Jakarta, Indonesia', NULL, NULL),
+(2, 'SP002', 'PT Sumber Pangan Nusantara', 'Bandung, Indonesia', NULL, NULL),
+(3, 'SP003', 'Toko Snack Maju Sejahtera', 'Surabaya, Indonesia', NULL, NULL),
+(4, 'SP004', 'PT Peralatan Mandi Bersih', 'Semarang, Indonesia', NULL, NULL),
+(5, 'SP005', 'CV Segar Jaya', 'Medan, Indonesia', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -209,13 +210,14 @@ CREATE TABLE `m_user` (
 INSERT INTO `m_user` (`user_id`, `level_id`, `username`, `nama`, `password`, `created_at`, `updated_at`) VALUES
 (1, 1, 'admin', 'Administrator', '$2y$12$VCW2ORmzHCRx0BW0B.S4Vu0seP652QJ4pF6FGqbbQ1y1Ap2ul8pbC', NULL, NULL),
 (2, 2, 'manager', 'Manager', '$2y$12$w88py8oYA9a4o5mGNbrJ6.A5M03xJzA8IIQ0E9zb0fuDwgbVhLdh6', NULL, NULL),
-(3, 3, 'staff', 'Staff/Kasir', '$2y$12$GAkNYMnY2U332.FZSS3KHOuxGi/Wb4XkC7EPjIx1k1Iorncl82Alq', NULL, NULL),
+(3, 3, 'staff', 'Staff/Kasir', '$2y$12$Nyfa1waGVWPaMSi9H3YL8edgbeZY.PelTevOs0xKP5nHry6TLcWhG', NULL, '2024-10-07 18:28:05'),
 (9, 4, 'Customer-1', 'Pelanggan Pertama', '$2y$12$cAGQ1L6pxwvxbSu.d2Yfh.GExCF.VIaczpS2RUneIlCPQHor94ag6', NULL, '2024-09-12 03:21:50'),
 (19, 2, 'manager_dua', 'Manager 2', '$2y$12$c7dGA.aGfAPshbxVOSWSn.0FV1XORhST8RTb8fOzdXfax5XKxvRfa', '2024-09-17 06:48:30', '2024-09-17 06:48:30'),
 (21, 2, 'manager22', 'Manager Dua Dua', '$2y$12$ntkmb9xvW9m8cO9QHpmA4uDgQmcRCHcR9zjrpIB94NUeAq8p1Z6zC', '2024-09-17 07:52:44', '2024-09-17 07:52:44'),
 (22, 2, 'manager33', 'Manager Tiga Tiga', '$2y$12$EHEripNttWJbEuKhUvYL4.5r8C.klQJ28A88qiFXywvap4Wi.PFSW', '2024-09-17 07:57:56', '2024-09-17 07:57:56'),
 (23, 2, 'manager56', 'Manager55', '$2y$12$O56KOvyWdswfiErsRrssZOm1/b92XSgbv4J7MJHwTI.iy/Vg..ekW', '2024-09-17 08:02:44', '2024-09-17 08:02:44'),
-(24, 2, 'manager12', 'Manager11', '$2y$12$bjpOKUv3F5bnimubUlUuEuz56NWZ01uciFmYjmXddCn6m7BGZBLk6', '2024-09-17 08:04:25', '2024-09-17 08:04:25');
+(24, 2, 'manager12', 'Manager111', '$2y$12$bjpOKUv3F5bnimubUlUuEuz56NWZ01uciFmYjmXddCn6m7BGZBLk6', '2024-09-17 08:04:25', '2024-10-03 08:13:54'),
+(43, 2, 'manager100', 'anas', '$2y$12$ct7tMpRv1r9TvuxcssUR..Q0GaTx6gVoVJd6Bw/Eh/a06rEE6tKWC', '2024-10-07 18:53:45', '2024-10-07 18:53:45');
 
 -- --------------------------------------------------------
 
@@ -340,9 +342,9 @@ INSERT INTO `t_penjualan_detail` (`detail_id`, `penjualan_id`, `barang_id`, `har
 
 CREATE TABLE `t_stok` (
   `stok_id` bigint UNSIGNED NOT NULL,
+  `supplier_id` bigint UNSIGNED NOT NULL,
   `barang_id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `supplier_id` bigint UNSIGNED NOT NULL,
   `stok_tanggal` datetime NOT NULL,
   `stok_jumlah` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -353,22 +355,17 @@ CREATE TABLE `t_stok` (
 -- Dumping data for table `t_stok`
 --
 
-INSERT INTO `t_stok` (`stok_id`, `barang_id`, `user_id`, `supplier_id`, `stok_tanggal`, `stok_jumlah`, `created_at`, `updated_at`) VALUES
+INSERT INTO `t_stok` (`stok_id`, `supplier_id`, `barang_id`, `user_id`, `stok_tanggal`, `stok_jumlah`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 1, '2024-09-11 07:00:00', 50, NULL, NULL),
-(2, 2, 1, 1, '2024-09-11 07:00:00', 40, NULL, NULL),
-(3, 3, 1, 1, '2024-09-11 07:00:00', 60, NULL, NULL),
-(4, 4, 2, 2, '2024-09-11 07:00:00', 30, NULL, NULL),
-(5, 5, 2, 2, '2024-09-11 07:00:00', 20, NULL, NULL),
-(6, 6, 2, 2, '2024-09-11 07:00:00', 25, NULL, NULL),
-(7, 7, 3, 3, '2024-09-11 07:00:00', 15, NULL, NULL),
-(8, 8, 3, 3, '2024-09-11 07:00:00', 35, NULL, NULL),
-(9, 9, 3, 3, '2024-09-11 07:00:00', 45, NULL, NULL),
-(10, 10, 1, 1, '2024-09-11 07:00:00', 60, NULL, NULL),
-(11, 11, 1, 1, '2024-09-11 07:00:00', 55, NULL, NULL),
-(12, 12, 2, 2, '2024-09-11 07:00:00', 70, NULL, NULL),
-(13, 13, 3, 3, '2024-09-11 07:00:00', 80, NULL, NULL),
-(14, 14, 3, 3, '2024-09-11 07:00:00', 45, NULL, NULL),
-(15, 15, 1, 1, '2024-09-11 07:00:00', 50, NULL, NULL);
+(2, 1, 2, 1, '2024-09-11 07:00:00', 40, NULL, NULL),
+(3, 1, 3, 1, '2024-09-11 07:00:00', 60, NULL, NULL),
+(4, 2, 4, 2, '2024-09-11 07:00:00', 30, NULL, NULL),
+(5, 2, 5, 2, '2024-09-11 07:00:00', 20, NULL, NULL),
+(6, 2, 6, 2, '2024-09-11 07:00:00', 25, NULL, NULL),
+(7, 3, 7, 3, '2024-09-11 07:00:00', 15, NULL, NULL),
+(8, 3, 8, 3, '2024-09-11 07:00:00', 35, NULL, NULL),
+(9, 3, 9, 3, '2024-09-11 07:00:00', 45, NULL, NULL),
+(10, 1, 10, 1, '2024-09-11 07:00:00', 60, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -405,17 +402,19 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `m_barangs`
+-- Indexes for table `m_barang`
 --
-ALTER TABLE `m_barangs`
+ALTER TABLE `m_barang`
   ADD PRIMARY KEY (`barang_id`),
-  ADD KEY `m_barangs_kategori_id_foreign` (`kategori_id`);
+  ADD UNIQUE KEY `m_barang_barang_kode_unique` (`barang_kode`),
+  ADD KEY `m_barang_kategori_id_index` (`kategori_id`);
 
 --
--- Indexes for table `m_kategoris`
+-- Indexes for table `m_kategori`
 --
-ALTER TABLE `m_kategoris`
-  ADD PRIMARY KEY (`kategori_id`);
+ALTER TABLE `m_kategori`
+  ADD PRIMARY KEY (`kategori_id`),
+  ADD UNIQUE KEY `m_kategori_kategori_kode_unique` (`kategori_kode`);
 
 --
 -- Indexes for table `m_level`
@@ -428,7 +427,8 @@ ALTER TABLE `m_level`
 -- Indexes for table `m_supplier`
 --
 ALTER TABLE `m_supplier`
-  ADD PRIMARY KEY (`supplier_id`);
+  ADD PRIMARY KEY (`supplier_id`),
+  ADD UNIQUE KEY `m_supplier_supplier_kode_unique` (`supplier_kode`);
 
 --
 -- Indexes for table `m_user`
@@ -472,9 +472,9 @@ ALTER TABLE `t_penjualan_detail`
 --
 ALTER TABLE `t_stok`
   ADD PRIMARY KEY (`stok_id`),
-  ADD KEY `t_stok_user_id_foreign` (`user_id`),
-  ADD KEY `t_stok_barang_id_foreign` (`barang_id`),
-  ADD KEY `t_stok_supplier_id_foreign` (`supplier_id`);
+  ADD KEY `t_stok_supplier_id_index` (`supplier_id`),
+  ADD KEY `t_stok_barang_id_index` (`barang_id`),
+  ADD KEY `t_stok_user_id_index` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -497,25 +497,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `m_barangs`
+-- AUTO_INCREMENT for table `m_barang`
 --
-ALTER TABLE `m_barangs`
-  MODIFY `barang_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `m_barang`
+  MODIFY `barang_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `m_kategoris`
+-- AUTO_INCREMENT for table `m_kategori`
 --
-ALTER TABLE `m_kategoris`
-  MODIFY `kategori_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `m_kategori`
+  MODIFY `kategori_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `m_level`
 --
 ALTER TABLE `m_level`
-  MODIFY `level_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `level_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `m_supplier`
@@ -527,7 +527,7 @@ ALTER TABLE `m_supplier`
 -- AUTO_INCREMENT for table `m_user`
 --
 ALTER TABLE `m_user`
-  MODIFY `user_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `user_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -551,7 +551,7 @@ ALTER TABLE `t_penjualan_detail`
 -- AUTO_INCREMENT for table `t_stok`
 --
 ALTER TABLE `t_stok`
-  MODIFY `stok_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `stok_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -564,10 +564,10 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `m_barangs`
+-- Constraints for table `m_barang`
 --
-ALTER TABLE `m_barangs`
-  ADD CONSTRAINT `m_barangs_kategori_id_foreign` FOREIGN KEY (`kategori_id`) REFERENCES `m_kategoris` (`kategori_id`);
+ALTER TABLE `m_barang`
+  ADD CONSTRAINT `m_barang_kategori_id_foreign` FOREIGN KEY (`kategori_id`) REFERENCES `m_kategori` (`kategori_id`);
 
 --
 -- Constraints for table `m_user`
@@ -592,7 +592,7 @@ ALTER TABLE `t_penjualan_detail`
 -- Constraints for table `t_stok`
 --
 ALTER TABLE `t_stok`
-  ADD CONSTRAINT `t_stok_barang_id_foreign` FOREIGN KEY (`barang_id`) REFERENCES `m_barangs` (`barang_id`),
+  ADD CONSTRAINT `t_stok_barang_id_foreign` FOREIGN KEY (`barang_id`) REFERENCES `m_barang` (`barang_id`),
   ADD CONSTRAINT `t_stok_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `m_supplier` (`supplier_id`),
   ADD CONSTRAINT `t_stok_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 COMMIT;
