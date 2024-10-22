@@ -20,7 +20,8 @@
             height: 100%;
             margin: 0;
             font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%);
+            background: url("{{ asset('adminlte/dist/img/Daftar.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,9 +30,15 @@
         .login-box {
             width: 400px;
             padding: 40px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 10px;
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background: transparent;
         }
 
         .card-header a {
@@ -54,6 +61,7 @@
         .form-control {
             padding: 10px 15px;
             border-radius: 5px;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .icheck-primary {
@@ -64,16 +72,20 @@
             text-align: center;
             color: #6c757d;
         }
+
+        .card-outline.card-primary {
+            border-top: 3px solid rgba(0, 123, 255, 0.7);
+        }
     </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="{{ url('/') }}" class="h1"><b>Admin</b>LTE</a>
+            <a href="{{ url('/') }}" class="h1"><b>ANSA</b>PREMIUM</a>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Sign up to create your account</p>
+            <p class="login-box-msg">Daftar untuk membuat akun Anda</p>
             <form action="{{ url('signup') }}" method="POST" id="form-tambah">
                 @csrf
                 <div class="form-group">
@@ -106,7 +118,7 @@
                         <a class="btn btn-default btn-block" href="{{ url('/') }}">Kembali</a>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                        <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                     </div>
                 </div>
             </form>

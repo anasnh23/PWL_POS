@@ -168,36 +168,39 @@ class UserController extends Controller
 
     // Ambil data user dalam bentuk json untuk datatables
     // Ambil data user dalam bentuk json untuk datatables
-    public function list(Request $request)
-    {
-        $users = UserModel::select('user_id', 'username', 'nama', 'foto', 'level_id')
-                    ->with('level');
-    
-        // Filter data user berdasarkan level_id
-        if ($request->level_id) {
-            $users->where('level_id', $request->level_id);
-        }
-    
-        return DataTables::of($users)
-            ->addIndexColumn()
-            // Menambahkan kolom foto
-            ->editColumn('foto', function ($user) {
-                if ($user->foto) {
-                    return '<img src="' . asset($user->foto) . '" style="width: 50px; height: 50px;" />';
-                }
-                return 'Foto kosong';  // Jika tidak ada foto
-            })
-            // Menambahkan kolom aksi
-            ->addColumn('aksi', function ($user) {
-                $btn = '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/show_ajax').'\')" class="btn btn-info btn-sm">Detail</button> ';
-                $btn .= '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/edit_ajax').'\')" class="btn btn-warning btn-sm">Edit</button> ';
-                $btn .= '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/delete_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
-                return $btn;
-            })
-            ->rawColumns(['foto', 'aksi']) // Supaya HTML di kolom foto dan aksi dirender dengan benar
-            ->make(true);
+public function list(Request $request)
+{
+    $users = UserModel::select('user_id', 'username', 'nama', 'foto', 'level_id')
+                ->with('level');
+
+    // Filter data user berdasarkan level_id
+    if ($request->level_id) {
+        $users->where('level_id', $request->level_id);
     }
-    
+
+    return DataTables::of($users)
+        // Menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
+        ->addIndexColumn()
+        
+        // Menambahkan kolom foto
+        ->editColumn('foto', function ($user) {
+            if ($user->foto) {
+                return '<img src="' . asset($user->foto) . '" style="width: 50px; height: 50px;" />';
+            }
+            return 'Foto kosong';  // Jika tidak ada foto
+        })
+        
+        // Menambahkan kolom aksi
+        ->addColumn('aksi', function ($user) {
+            $btn = '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/show_ajax').'\')" class="btn btn-info btn-sm">Detail</button> ';
+            $btn .= '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/edit_ajax').'\')" class="btn btn-warning btn-sm">Edit</button> ';
+            $btn .= '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/delete_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
+            return $btn;
+        })
+        
+        ->rawColumns(['foto', 'aksi']) // memberitahu bahwa kolom aksi dan foto adalah HTML
+        ->make(true);
+}
 
 
     //Menampilkan laman form tambah user
@@ -257,17 +260,18 @@ class UserController extends Controller
             'level_id'  => 'required|integer',
             'username'  => 'required|string|min:3|unique:m_user,username',
             'nama'      => 'required|string|max:100',
-            'password'  => 'required|min:5',
-            'foto'      => 'nullable|mimes:jpeg,png,jpg|max:4096'
+            'foto'      => 'nullable|mimes:jpeg,png,jpg|max:4096',
+            'password'  => 'required|min:5'
+
         ];
 
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json([
-                'status'    => false,
+                'status'    => false,    // status false jika validasi gagal
                 'message'   => 'Validasi Gagal!',
-                'msgField'  => $validator->errors()
+                'msgField'  => $validator->errors()    // pesan error validasi
             ]);
         }
 
@@ -290,9 +294,9 @@ class UserController extends Controller
         UserModel::create([
             'username'  => $request->username,
             'nama'      => $request->nama,
-            'password'  => bcrypt($request->password),  // Enkripsi password
+            'password'  => bcrypt($request->password),  // enkripsi password
             'level_id'  => $request->level_id,
-            'foto'      => $fotoPath  // Simpan path foto, null jika tidak ada foto
+            'foto'      => $fotoPath  // simpan path foto, null jika tidak ada foto
         ]);
 
         return response()->json([
@@ -303,7 +307,6 @@ class UserController extends Controller
 
     return redirect('/');
 }
-
 
     //Menampilkan form detil data user AJAX
     public function show_ajax($id)
@@ -389,8 +392,8 @@ class UserController extends Controller
                 'level_id' => 'required|integer',
                 'username' => 'required|max:20|unique:m_user,username,'.$id.',user_id',
                 'nama'     => 'required|max:100',
+                'foto'     => 'nullable|mimes:jpeg,png,jpg|max:4096',
                 'password' => 'nullable|min:5|max:20',
-                'foto'     => 'nullable|mimes:jpeg,png,jpg|max:4096'
             ];
 
             // use Illuminate\Support\Facades\Validator;

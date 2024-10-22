@@ -150,14 +150,14 @@
 
             <div class="remember-me icheck-primary">
                 <input type="checkbox" id="remember">
-                <label for="remember">Remember Me</label>
+                <label for="remember">Ingat Saya</label>
             </div>
 
-            <button type="submit" class="btn btn-primary">Sign In</button>
+            <button type="submit" class="btn btn-primary">Masuk</button>
         </form>
 
         <div class="register-link">
-            <p>Don't have an account? <a href="{{ url('signup') }}">Register here</a></p>
+            <p>Belum Punya akun? <a href="{{ url('signup') }}">Daftar disini</a></p>
         </div>
     </div>
 </div>
