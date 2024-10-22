@@ -51,7 +51,7 @@ class BarangController extends Controller
                 $btn .= '<form class="d-inline-block" method="POST" action="'.url('/barang/'.$barang->barang_id).'">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';*/
-                $btn = '<button onclick="modalAction(\''.url('/barang/' . $barang->barang_id .'/show').'\')" class="btn btn-info btn-sm">Detail</button> ';
+                $btn = '<button onclick="modalAction(\''.url('/barang/' . $barang->barang_id .'/show_ajax').'\')" class="btn btn-info btn-sm">Detail</button> ';
                 $btn .= '<button onclick="modalAction(\''.url('/barang/' . $barang->barang_id .'/edit_ajax').'\')" class="btn btn-warning btn-sm">Edit</button> ';
                 $btn .= '<button onclick="modalAction(\''.url('/barang/' . $barang->barang_id .'/delete_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
 
@@ -140,6 +140,14 @@ class BarangController extends Controller
         redirect('/');
     }
 
+    public function show_ajax($id)
+    {
+        $barang = BarangModel::find($id);
+        
+        return view('barang.show_ajax', ['barang' => $barang]);
+    }
+
+
     public function show(string $id)
     {
         $barang = BarangModel::with('kategori')->find($id);
@@ -155,7 +163,7 @@ class BarangController extends Controller
 
         $activeMenu = 'barang';
 
-        return view('barang.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'activeMenu' => $activeMenu]);
+        return view('barang.show_ajax', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'activeMenu' => $activeMenu]);
 
     }
 

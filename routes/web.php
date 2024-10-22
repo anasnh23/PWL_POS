@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function(){
     //semua route yang perlu otentikasi
     Route::get('/', [WelcomeController::class, 'index']);
 
-    Route::middleware(['authorize:ADM,MNG,STF,PLG'])->group(function(){
+    Route::middleware(['authorize:ADM,MNG,STF,BRH'])->group(function(){
         Route::get('/profile', [ProfileController::class, 'index']);
         Route::get('/profile/{id}/edit_ajax', [ProfileController::class, 'edit_ajax']);
         Route::put('/profile/{id}/update_ajax', [ProfileController::class, 'update_ajax']);
@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function(){
     });
 
     //Semua route di grup ini harus punya role ADM (Administrator)
-    Route::group(['prefix' => 'user', 'middleware'=> 'authorize:ADM,MNG,STF'], function(){
+    Route::group(['prefix' => 'user', 'middleware'=> 'authorize:ADM,MNG'], function(){
         Route::get('/', [UserController::class, 'index']);                          //menampilkan laman awal user
         Route::post('/list', [UserController::class, 'list']);                      //menampilkan data user dalam bentuk json untuk datatables
         Route::get('/create', [UserController::class, 'create']);                   //menampilkan laman form tambah user
@@ -117,7 +117,7 @@ Route::middleware(['auth'])->group(function(){
     });
     
     //Semua route di grup ini harus punya role ADM (Administrator)
-    Route::group(['prefix' => 'supplier', 'middleware'=> 'authorize:ADM'], function(){
+    Route::group(['prefix' => 'supplier', 'middleware'=> 'authorize:ADM,MNG'], function(){
         Route::get('/', [SupplierController::class, 'index']);                              //menampilkan laman awal supplier
         Route::post('/list', [SupplierController::class, 'list']);                          //menampilkan data supplier dalam bentuk json untuk datatables
         Route::get('/create_ajax', [SupplierController::class, 'create_ajax']);             //menampilkan laman form tambah supplier AJAX
@@ -134,7 +134,7 @@ Route::middleware(['auth'])->group(function(){
     });
 
     //Semua route di grup ini harus punya role ADM (Administrator) dan MNG (Manager)
-    Route::group(['prefix' => 'barang', 'middleware'=> 'authorize:ADM,MNG'], function(){
+    Route::group(['prefix' => 'barang', 'middleware'=> 'authorize:ADM,MNG,STF,KSR'], function(){
         Route::get('/', [BarangController::class, 'index']);                                //menampilkan laman awal barang
         Route::post('/list', [BarangController::class, 'list']);                            //menampilkan data barang dalam bentuk json untuk datatables
         Route::get('/create_ajax', [BarangController::class, 'create_ajax']);               //menampilkan laman form tambah barang AJAX
@@ -151,7 +151,7 @@ Route::middleware(['auth'])->group(function(){
     });
 
     //Semua route di grup ini harus punya role ADM (Administrator), MNG (Manager), dan STF (Staff/Kasir)
-    Route::group(['prefix' => 'stok', 'middleware'=> 'authorize:ADM,MNG,STF'], function(){
+    Route::group(['prefix' => 'stok', 'middleware'=> 'authorize:ADM,MNG,STF,KSR'], function(){
         Route::get('/', [StokController::class, 'index']);                                //menampilkan laman awal stok
         Route::post('/list', [StokController::class, 'list']);                            //menampilkan data stok dalam bentuk json untuk datatables
         Route::get('/create_ajax', [StokController::class, 'create_ajax']);               //menampilkan laman form tambah stok AJAX
@@ -168,7 +168,7 @@ Route::middleware(['auth'])->group(function(){
     });
 
     //Semua route di grup ini harus punya role ADM (Administrator), MNG (Manager), dan STF (Staff/Kasir)
-    Route::group(['prefix' => 'penjualan', 'middleware'=> 'authorize:ADM,MNG,STF'], function(){
+    Route::group(['prefix' => 'penjualan', 'middleware'=> 'authorize:ADM,MNG,STF,KSR'], function(){
         Route::get('/', [PenjualanController::class, 'index']);                                //menampilkan laman awal penjualan
         Route::post('/list', [PenjualanController::class, 'list']);                            //menampilkan data penjualan dalam bentuk json untuk datatables
         Route::get('/create_ajax', [PenjualanController::class, 'create_ajax']);               //menampilkan laman form tambah penjualan AJAX
