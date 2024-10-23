@@ -40,6 +40,7 @@ Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);*/
 
 Route::pattern('id', '[0-9]+'); //ketika ada parameter {id}, maka harus berupa angka
 
+Route::get('/', [WelcomeController::class, 'landing']);
 
 Route::get('signup', [RegistrationController::class, 'registration'])->name('signup');
 Route::post('signup', [RegistrationController::class, 'store']);
@@ -50,7 +51,7 @@ Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function(){
     //semua route yang perlu otentikasi
-    Route::get('/', [WelcomeController::class, 'index']);
+    Route::get('/dashboard', [WelcomeController::class, 'index']);
 
     Route::middleware(['authorize:ADM,MNG,STF,BRH'])->group(function(){
         Route::get('/profile', [ProfileController::class, 'index']);

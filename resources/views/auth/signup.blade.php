@@ -20,7 +20,7 @@
             height: 100%;
             margin: 0;
             font-family: 'Source Sans Pro', sans-serif;
-            background: url("{{ asset('adminlte/dist/img/Daftar.jpg') }}") no-repeat center center fixed;
+            background: url("{{ asset('adminlte/dist/img/background.jpg') }}") no-repeat center center fixed;
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -30,11 +30,9 @@
         .login-box {
             width: 400px;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 10px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .card {
@@ -61,11 +59,7 @@
         .form-control {
             padding: 10px 15px;
             border-radius: 5px;
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        .icheck-primary {
-            padding-left: 0;
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .login-box p {
