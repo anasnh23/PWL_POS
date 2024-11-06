@@ -5,15 +5,34 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable; //implementasi class Aunthenticatable
 
-class UserModel extends Authenticatable
+class UserModel extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
+    public function getJWTIdentifier(){
+        return $this->getKey(); //mengembalikan primary key dari UserModel sebagai identifier untuk JWT
+    }
+
+    public function getJWTCustomClaims(){
+        return [];  //memungkinkan penambahan klaim khusus ke payload JWT
+    }
+
+    //use HasFactory;
 
     protected $table = 'm_user';        //mendefinisikan nama tabel yang digunakan UserModel
     protected $primaryKey = 'user_id';  //mendefinisikan primary key dari tabel yang digunakan
-    protected $fillable = ['level_id', 'username', 'nama', 'password', 'foto', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'level_id',
+        'username',
+        'nama',
+        'password',
+        //'foto',
+        'image',
+        //'created_at',
+        //'updated_at'
+    ];
 
     protected $hidden = ['password']; //jangan ditampilkan saat select
     protected $casts = ['password' => 'hashed']; //casting password agar otomatis di-hash
@@ -40,5 +59,12 @@ class UserModel extends Authenticatable
     public function getRole()
     {
         return $this->level->level_kode;
+    }
+
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($image) => url('/storage/posts/' . $image),
+        );
     }
 }
